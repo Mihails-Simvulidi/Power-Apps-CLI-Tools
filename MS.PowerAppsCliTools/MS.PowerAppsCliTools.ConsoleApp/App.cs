@@ -6,16 +6,25 @@ namespace MS.PowerAppsCliTools.ConsoleApp
 {
     internal class App : IDisposable
     {
+        private const string DataverseConnectionString = "DataverseConnectionString";
+        private const string ExportUnmanagedSolution = "exportunmanagedsolution";
         private const string UpdatePluginAssembly = "updatepluginassembly";
         private const string UpdateWebResource = "updatewebresource";
-
         private readonly string[] args;
         private bool disposedValue;
         private readonly Lazy<ServiceClient> serviceClient = new Lazy<ServiceClient>(() =>
         {
-            Console.WriteLine("Connecting to Dataverse...");
-            string? dataverseConnectionString = Environment.GetEnvironmentVariable("DataverseConnectionString");
-            return new ServiceClient(dataverseConnectionString);
+            Console.Write("Connecting to Dataverse... ");
+            string? dataverseConnectionString = Environment.GetEnvironmentVariable(DataverseConnectionString);
+
+            if (dataverseConnectionString == null)
+            {
+                throw new InvalidOperationException($"Environment variable {DataverseConnectionString} is not set.");
+            }
+
+            ServiceClient serviceClient = new ServiceClient(dataverseConnectionString);
+            Console.WriteLine("Connected.");
+            return serviceClient;
         });
         private readonly Lazy<ServiceContext> serviceContext;
 
@@ -39,11 +48,21 @@ namespace MS.PowerAppsCliTools.ConsoleApp
             var command = args[0].ToLower();
             switch (command)
             {
+                case ExportUnmanagedSolution:
+                    if (args.Length != 3)
+                    {
+                        ShowUsage();
+                        break;
+                    }
+
+                    await ExportUnmanagedSolutionAsync();
+                    break;
+
                 case UpdatePluginAssembly:
                     if (args.Length != 2)
                     {
                         ShowUsage();
-                        return;
+                        break;
                     }
 
                     await UpdatePluginAssemblyAsync();
@@ -53,7 +72,7 @@ namespace MS.PowerAppsCliTools.ConsoleApp
                     if (args.Length != 3)
                     {
                         ShowUsage();
-                        return;
+                        break;
                     }
 
                     await UpdateWebResourceAsync();
@@ -68,14 +87,29 @@ namespace MS.PowerAppsCliTools.ConsoleApp
         private void ShowUsage()
         {
             Console.WriteLine("Usage:");
+            Console.WriteLine($"{AppDomain.CurrentDomain.FriendlyName} {ExportUnmanagedSolution} solution path");
             Console.WriteLine($"{AppDomain.CurrentDomain.FriendlyName} {UpdatePluginAssembly} path");
             Console.WriteLine($"{AppDomain.CurrentDomain.FriendlyName} {UpdateWebResource} prefix path");
+        }
+
+        async Task ExportUnmanagedSolutionAsync()
+        {
+            Console.WriteLine("Exporting solution...");
+            var solutionName = args[1];
+            var path = args[2];
+            var exportSolutionRequest = new ExportSolutionRequest
+            {
+                Managed = false,
+                SolutionName = solutionName,
+            };
+            var exportSolutionResponse = (ExportSolutionResponse)(await ServiceClient.ExecuteAsync(exportSolutionRequest));
+            await File.WriteAllBytesAsync(path, exportSolutionResponse.ExportSolutionFile);
         }
 
         async Task UpdatePluginAssemblyAsync()
         {
             Console.WriteLine("Retrieving plug-in assembly...");
-            string path = args[1];
+            var path = args[1];
             var fileInfo = new FileInfo(path);
             var fileNameWithoutExtension = fileInfo.Name.Substring(0, fileInfo.Name.Length - fileInfo.Extension.Length);
             var pluginAssembly = ServiceContext.PluginAssemblySet
@@ -94,8 +128,8 @@ namespace MS.PowerAppsCliTools.ConsoleApp
         async Task UpdateWebResourceAsync()
         {
             Console.WriteLine("Retrieving web resource...");
-            string prefix = args[1];
-            string path = args[2];
+            var prefix = args[1];
+            var path = args[2];
             var fileInfo = new FileInfo(path);
             var webResource = ServiceContext.WebResourceSet
                 .Where(wr => wr.Name == $"{prefix}{fileInfo.Name}")
