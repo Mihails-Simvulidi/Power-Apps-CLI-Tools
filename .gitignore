@@ -350,4 +350,4 @@ MigrationBackup/
 .ionide/
 
 # Custom
-/MS.PowerAppsCliTools/MS.PowerAppsCliTools.ConsoleApp/Properties/launchSettings.json
+/MS.PowerAppsCliTools.ConsoleApp/Properties/launchSettings.json
