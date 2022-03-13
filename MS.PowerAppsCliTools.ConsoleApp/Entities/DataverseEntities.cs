@@ -6,13 +6,13 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // </auto-generated>
-// Created via this command line: "C:\Users\Mihails\AppData\Roaming\MscrmTools\XrmToolBox\Plugins\DLaB.EarlyBoundGenerator\crmsvcutil.exe" /namespace:"PC.PowerApps.Common.Entities.Dataverse" /SuppressGeneratedCodeAttribute /out:"C:\Users\Mihails\source\repos\Power-Apps-CLI-Tools\MS.PowerAppsCliTools\MS.PowerAppsCliTools.ConsoleApp\Entities\DataverseEntities.cs" /servicecontextname:"ServiceContext" /codecustomization:"DLaB.CrmSvcUtilExtensions.Entity.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.Entity.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.Entity.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /namingservice:"DLaB.CrmSvcUtilExtensions.NamingService,DLaB.CrmSvcUtilExtensions" /metadataproviderservice:"DLaB.CrmSvcUtilExtensions.Entity.MetadataProviderService,DLaB.CrmSvcUtilExtensions" /connectionstring:"AuthType=OAuth;Username=mihails.simvulidi@pilsetacilvekiem.lv;Url=https://pilsetacilvekiem.api.crm4.dynamics.com;AppId=51f81489-12ee-4a9e-aaae-a2591f45987d;RedirectUri=app://58145b91-0c36-4500-8554-080854f2ac97/;TokenCacheStorePath=C:\Users\Mihails\AppData\Local\Temp\{bba94f33-cdc2-4ed2-9161-9b8bc593c537};LoginPrompt=Auto" 
+// Created via this command line: "C:\Users\Mihails\AppData\Roaming\MscrmTools\XrmToolBox\Plugins\DLaB.EarlyBoundGenerator\crmsvcutil.exe" /namespace:"MS.PowerAppsCliTools.ConsoleApp.Entities" /SuppressGeneratedCodeAttribute /out:"C:\Users\Mihails\source\repos\Power-Apps-CLI-Tools\MS.PowerAppsCliTools.ConsoleApp\Entities\DataverseEntities.cs" /servicecontextname:"CrmServiceContext" /codecustomization:"DLaB.CrmSvcUtilExtensions.Entity.CustomizeCodeDomService,DLaB.CrmSvcUtilExtensions" /codegenerationservice:"DLaB.CrmSvcUtilExtensions.Entity.CustomCodeGenerationService,DLaB.CrmSvcUtilExtensions" /codewriterfilter:"DLaB.CrmSvcUtilExtensions.Entity.CodeWriterFilterService,DLaB.CrmSvcUtilExtensions" /namingservice:"DLaB.CrmSvcUtilExtensions.NamingService,DLaB.CrmSvcUtilExtensions" /metadataproviderservice:"DLaB.CrmSvcUtilExtensions.Entity.MetadataProviderService,DLaB.CrmSvcUtilExtensions" /connectionstring:"AuthType=OAuth;Username=mihails.simvulidi@pilsetacilvekiem.lv;Url=https://pilsetacilvekiem.api.crm4.dynamics.com;AppId=51f81489-12ee-4a9e-aaae-a2591f45987d;RedirectUri=app://58145b91-0c36-4500-8554-080854f2ac97/;TokenCacheStorePath=C:\Users\Mihails\AppData\Local\Temp\{bba94f33-cdc2-4ed2-9161-9b8bc593c537};LoginPrompt=Auto" 
 //------------------------------------------------------------------------------
 
 [assembly: Microsoft.Xrm.Sdk.Client.ProxyTypesAssemblyAttribute()]
 [assembly: System.CodeDom.Compiler.GeneratedCodeAttribute("CrmSvcUtil", "9.1.0.95")]
 
-namespace PC.PowerApps.Common.Entities.Dataverse
+namespace MS.PowerAppsCliTools.ConsoleApp.Entities
 {
 	
 	
@@ -1443,39 +1443,39 @@ namespace PC.PowerApps.Common.Entities.Dataverse
 	/// <summary>
 	/// Represents a source of entities bound to a CRM service. It tracks and manages changes made to the retrieved entities.
 	/// </summary>
-	public partial class ServiceContext : Microsoft.Xrm.Sdk.Client.OrganizationServiceContext
+	public partial class CrmServiceContext : Microsoft.Xrm.Sdk.Client.OrganizationServiceContext
 	{
 		
 		/// <summary>
 		/// Constructor.
 		/// </summary>
 		[System.Diagnostics.DebuggerNonUserCode()]
-		public ServiceContext(Microsoft.Xrm.Sdk.IOrganizationService service) : 
+		public CrmServiceContext(Microsoft.Xrm.Sdk.IOrganizationService service) : 
 				base(service)
 		{
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="PC.PowerApps.Common.Entities.Dataverse.PluginAssembly"/> entities.
+		/// Gets a binding to the set of all <see cref="MS.PowerAppsCliTools.ConsoleApp.Entities.PluginAssembly"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<PC.PowerApps.Common.Entities.Dataverse.PluginAssembly> PluginAssemblySet
+		public System.Linq.IQueryable<MS.PowerAppsCliTools.ConsoleApp.Entities.PluginAssembly> PluginAssemblySet
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.CreateQuery<PC.PowerApps.Common.Entities.Dataverse.PluginAssembly>();
+				return this.CreateQuery<MS.PowerAppsCliTools.ConsoleApp.Entities.PluginAssembly>();
 			}
 		}
 		
 		/// <summary>
-		/// Gets a binding to the set of all <see cref="PC.PowerApps.Common.Entities.Dataverse.WebResource"/> entities.
+		/// Gets a binding to the set of all <see cref="MS.PowerAppsCliTools.ConsoleApp.Entities.WebResource"/> entities.
 		/// </summary>
-		public System.Linq.IQueryable<PC.PowerApps.Common.Entities.Dataverse.WebResource> WebResourceSet
+		public System.Linq.IQueryable<MS.PowerAppsCliTools.ConsoleApp.Entities.WebResource> WebResourceSet
 		{
 			[System.Diagnostics.DebuggerNonUserCode()]
 			get
 			{
-				return this.CreateQuery<PC.PowerApps.Common.Entities.Dataverse.WebResource>();
+				return this.CreateQuery<MS.PowerAppsCliTools.ConsoleApp.Entities.WebResource>();
 			}
 		}
 	}

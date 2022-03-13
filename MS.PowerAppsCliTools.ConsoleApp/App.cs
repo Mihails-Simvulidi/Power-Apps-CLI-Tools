@@ -1,6 +1,6 @@
 ﻿using Microsoft.Crm.Sdk.Messages;
 using Microsoft.PowerPlatform.Dataverse.Client;
-using PC.PowerApps.Common.Entities.Dataverse;
+using MS.PowerAppsCliTools.ConsoleApp.Entities;
 
 namespace MS.PowerAppsCliTools.ConsoleApp
 {
@@ -26,14 +26,14 @@ namespace MS.PowerAppsCliTools.ConsoleApp
             Console.WriteLine("Connected.");
             return serviceClient;
         });
-        private readonly Lazy<ServiceContext> serviceContext;
+        private readonly Lazy<CrmServiceContext> serviceContext;
 
         private ServiceClient ServiceClient => serviceClient.Value;
-        private ServiceContext ServiceContext => serviceContext.Value;
+        private CrmServiceContext ServiceContext => serviceContext.Value;
 
         public App(string[] args)
         {
-            this.serviceContext = new Lazy<ServiceContext>(() => new ServiceContext(ServiceClient));
+            this.serviceContext = new Lazy<CrmServiceContext>(() => new CrmServiceContext(ServiceClient));
             this.args = args;
         }
 

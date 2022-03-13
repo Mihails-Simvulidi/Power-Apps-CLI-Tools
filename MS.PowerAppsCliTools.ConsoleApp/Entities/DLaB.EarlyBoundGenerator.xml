@@ -190,7 +190,7 @@ salesorderdetail:SalesOrderStateCode</UnmappedProperties>
     <Argument>
       <SettingType>All</SettingType>
       <Name>namespace</Name>
-      <Value>PC.PowerApps.Common.Entities.Dataverse</Value>
+      <Value>MS.PowerAppsCliTools.ConsoleApp.Entities</Value>
       <Valueless>false</Valueless>
     </Argument>
     <Argument>
@@ -208,7 +208,7 @@ salesorderdetail:SalesOrderStateCode</UnmappedProperties>
     <Argument>
       <SettingType>Entities</SettingType>
       <Name>servicecontextname</Name>
-      <Value>ServiceContext</Value>
+      <Value>CrmServiceContext</Value>
       <Valueless>false</Valueless>
     </Argument>
     <Argument>
